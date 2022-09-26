@@ -1,7 +1,9 @@
-const Error = () => {
+export const Error = () => {
   return (
-    <div>Error Wokrs!</div>
-  )
-}
-
-export default Error;
+    <div className="w-full flex justify-center items-center">
+      <h1 className="font-bold text-2xl text-white mt-2">
+        Something wrong happened
+      </h1>
+    </div>
+  );
+};

@@ -1,14 +1,18 @@
 import { Igenre, genres } from '../assets/constants';
 import SongCard from '../components/SongCard';
-import { Song } from '../redux/services/models';
+import { Song } from '../redux/types';
 import { useGetTopChartsQuery } from '../redux/services/shazamCore';
+import { Loader } from '../components/Loader';
+import { Error } from '../components/Error';
 
 const Discover = () => {
-  const { data, isFetching, error } = useGetTopChartsQuery();
+  const { data, isFetching, error } = useGetTopChartsQuery(undefined);
   console.log(data);
   const genreTitle = "Pop";
 
+  if (isFetching) return <Loader title="Loading songs..." />;
 
+  if (error) return <Error />;
 
   return (
     <div className="flex flex-col">
