@@ -1,12 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { RootState } from '../store';
+import { Song } from '../types';
 
-const initialState = {
+export interface IPlayer {
+  currentSongs: Song[],
+  currentIndex: number,
+  isActive: boolean,
+  isPlaying: boolean,
+  activeSong?: Song,
+  genreListId: string
+};
+
+const initialState: IPlayer = {
   currentSongs: [],
   currentIndex: 0,
   isActive: false,
   isPlaying: false,
-  activeSong: {},
   genreListId: '',
 };
 
