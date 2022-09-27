@@ -1,14 +1,16 @@
-import { Igenre, genres } from '../assets/constants';
-import SongCard from '../components/SongCard';
-import { Song } from '../redux/types';
-import { useGetTopChartsQuery } from '../redux/services/shazamCore';
-import { Loader } from '../components/Loader';
-import { Error } from '../components/Error';
-import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { Igenre, genres } from "../assets/constants";
+import SongCard from "../components/SongCard";
+import { Song } from "../redux/types";
+import { useGetTopChartsQuery } from "../redux/services/shazamCore";
+import { Loader } from "../components/Loader";
+import { Error } from "../components/Error";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 
 const Discover = () => {
   const dispatch = useAppDispatch();
-  const { activeSong, isPlaying } = useAppSelector((state) => {state.player});
+  const { activeSong, isPlaying } = useAppSelector((state) => {
+    return state.player;
+  });
   const { data, isFetching, error } = useGetTopChartsQuery(undefined);
   const genreTitle = "Pop";
 
@@ -29,12 +31,14 @@ const Discover = () => {
         >
           {genres.map((genre: Igenre) => {
             return (
-              <option value={genre.title} key={genre.value}>{genre.title}</option>
-            )
+              <option value={genre.title} key={genre.value}>
+                {genre.title}
+              </option>
+            );
           })}
         </select>
       </div>
-      <div className='flex flex-wrap sm:justify-start justify-center gap-8'>
+      <div className="flex flex-wrap sm:justify-start justify-center gap-8">
         {data?.map((song: Song, index: string) => {
           /** TODO: add song.key instead */
           return (
@@ -42,6 +46,9 @@ const Discover = () => {
               key={index}
               song={song}
               i={index}
+              isPlaying={isPlaying}
+              activeSong={activeSong}
+              data={data}
             />
           )
         })}

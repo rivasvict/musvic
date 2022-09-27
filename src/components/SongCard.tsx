@@ -2,9 +2,7 @@ import { Link } from "react-router-dom";
 import { Song } from "../redux/types";
 import { PlayPause } from "./PlayPause";
 
-const SongCard = ({ song, i }: { song: Song; i: string }) => {
-  const activeSong = { title: "Test" };
-
+const SongCard = ({ song, i, activeSong, isPlaying, data }: { song: Song; i: string, activeSong: {title?: string}, isPlaying: boolean, data: Song[] }) => {
   const handlePauseClick = () => {};
 
   const handlePlayClick = () => {
@@ -21,7 +19,7 @@ const SongCard = ({ song, i }: { song: Song; i: string }) => {
               : "hidden"
           }`}
         >
-          <PlayPause song={song} handlePauseClick={handlePauseClick} handlePlayClick={handlePlayClick} />
+          <PlayPause song={song} handlePauseClick={handlePauseClick} handlePlayClick={handlePlayClick} isPlaying={isPlaying} activeSong={activeSong} />
         </div>
         <img alt='son_img' src={song.images?.coverart} />
       </div>
