@@ -9,9 +9,9 @@ export const PlayPause = ({
   isPlaying,
 }: {
   song: Song;
-  handlePauseClick: () => {};
-  handlePlayClick: () => {};
-  activeSong: { title: string };
+  handlePauseClick: () => void;
+  handlePlayClick: () => void;
+  activeSong?: Song;
   isPlaying: boolean;
 }) => {
   return isPlaying && activeSong?.title === song.title ? (

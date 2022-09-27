@@ -4,7 +4,7 @@ import { useAppDispatch } from "../redux/hooks";
 import { Song } from "../redux/types";
 import { PlayPause } from "./PlayPause";
 
-const SongCard = ({ song, i, activeSong, isPlaying, data }: { song: Song; i: string, activeSong: {title?: string}, isPlaying: boolean, data: Song[] }) => {
+const SongCard = ({ song, i, activeSong, isPlaying, data }: { song: Song; i: string, activeSong: Song | undefined, isPlaying: boolean, data: Song[] }) => {
   const dispatch = useAppDispatch();
   const handlePauseClick = () => {
     dispatch(playPause(false));
