@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom"
 import MusicPlayer from "./components/MusicPlayer";
 import { Sidebar } from "./components/Sidebar";
+import { TopPlay } from "./components/TopPlay";
 import Discover from "./pages/Discover"
 import { useAppSelector } from "./redux/hooks"
 
@@ -19,7 +20,7 @@ function App() {
             </Routes>
           </div>
           <div className="xl:sticky relative top-0 hfit">
-            {/* <TopPlay />*/}
+            <TopPlay />
           </div>
         </div>
       </div>
