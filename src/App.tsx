@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom"
 import MusicPlayer from "./components/MusicPlayer";
 import { Sidebar } from "./components/Sidebar";
 import { TopPlay } from "./components/TopPlay";
+import { AroundYou } from "./pages/AroundYou";
 import { ArtistDetails } from "./pages/ArtistDetails";
 import Discover from "./pages/Discover"
 import { SongDetails } from "./pages/SongDetails";
@@ -20,6 +21,7 @@ function App() {
               <Route path='/' element={<Discover />} />
               <Route path='/songs/:songid' element={<SongDetails />} />
               <Route path='/artists/:id' element={<ArtistDetails />} />
+              <Route path='/around-you' element={<AroundYou />} />
               {/* <Searchbar />*/}
             </Routes>
           </div>
