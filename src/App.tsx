@@ -6,6 +6,7 @@ import { AroundYou } from "./pages/AroundYou";
 import { ArtistDetails } from "./pages/ArtistDetails";
 import Discover from "./pages/Discover"
 import { SongDetails } from "./pages/SongDetails";
+import { TopCharts } from "./pages/TopCharts";
 import { useAppSelector } from "./redux/hooks"
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
               <Route path='/songs/:songid' element={<SongDetails />} />
               <Route path='/artists/:id' element={<ArtistDetails />} />
               <Route path='/around-you' element={<AroundYou />} />
+              <Route path='/top-charts' element={<TopCharts />} />
               {/* <Searchbar />*/}
             </Routes>
           </div>
