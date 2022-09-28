@@ -3,6 +3,7 @@ import MusicPlayer from "./components/MusicPlayer";
 import { Sidebar } from "./components/Sidebar";
 import { TopPlay } from "./components/TopPlay";
 import Discover from "./pages/Discover"
+import { SongDetails } from "./pages/SongDetails";
 import { useAppSelector } from "./redux/hooks"
 
 function App() {
@@ -12,11 +13,12 @@ function App() {
     <div className="relative flex">
       <Sidebar />
       <div className="flex-1 flex flex-col bg-gradient-to-br from-black to-[#121286]">
-        {/* <Searchbar />*/}
         <div className="px-6 h-[calc(100vh-72px)] overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col-reverse">
           <div className="flex-1 h-fit pb-40">
             <Routes>
               <Route path='/' element={<Discover />} />
+              <Route path='/songs/:songid' element={<SongDetails />} />
+              {/* <Searchbar />*/}
             </Routes>
           </div>
           <div className="xl:sticky relative top-0 hfit">
