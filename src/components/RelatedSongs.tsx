@@ -13,7 +13,7 @@ export const RelatedSongs = ({
   isPlaying: boolean;
   activeSong: Song;
   artistId?: string,
-  handlePlayClick: ({
+  handlePlayClick?: ({
     song,
     data,
     i,
@@ -22,7 +22,7 @@ export const RelatedSongs = ({
     data: Song[];
     i: number;
   }) => void;
-  handlePauseClick: () => void;
+  handlePauseClick?: () => void;
 }) => {
   return (
     <div className="flex flex-col">

@@ -4,7 +4,6 @@ import { Error } from "../components/Error";
 import { Loader } from "../components/Loader";
 import { RelatedSongs } from "../components/RelatedSongs";
 import {
-  useAppDispatch,
   useAppSelector,
   usePlayPauseHanlders,
 } from "../redux/hooks";
@@ -15,7 +14,6 @@ import {
 import { Song } from "../redux/types";
 
 export const SongDetails = () => {
-  const dispatch = useAppDispatch();
   const { songid, id: artistId } = useParams();
   const { activeSong, isPlaying } = useAppSelector((state) => state.player);
   /** TODO: Implement error when fetching in this function */

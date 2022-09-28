@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom"
 import MusicPlayer from "./components/MusicPlayer";
 import { Sidebar } from "./components/Sidebar";
 import { TopPlay } from "./components/TopPlay";
+import { ArtistDetails } from "./pages/ArtistDetails";
 import Discover from "./pages/Discover"
 import { SongDetails } from "./pages/SongDetails";
 import { useAppSelector } from "./redux/hooks"
@@ -18,6 +19,7 @@ function App() {
             <Routes>
               <Route path='/' element={<Discover />} />
               <Route path='/songs/:songid' element={<SongDetails />} />
+              <Route path='/artists/:id' element={<ArtistDetails />} />
               {/* <Searchbar />*/}
             </Routes>
           </div>

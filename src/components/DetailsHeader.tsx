@@ -19,7 +19,7 @@ export const DetailsHeader = ({
           src={
             (artist as ArtistAttributes)?.artwork?.url
               .replace("{w}", "500")
-              .replace("{w}", "500") || songData?.images?.coverart
+              .replace("{h}", "500") || songData?.images?.coverart
           }
           alt="art"
           className="sm:w-48 w-28 sm:h-48 h-28 rounded-full object-cover border-2 shadow-xl shadow-black"
