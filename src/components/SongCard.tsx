@@ -4,7 +4,7 @@ import { useAppDispatch } from "../redux/hooks";
 import { Song } from "../redux/types";
 import { PlayPause } from "./PlayPause";
 
-const SongCard = ({ song, i, activeSong, isPlaying, data }: { song: Song; i: string, activeSong: Song | undefined, isPlaying: boolean, data: Song[] }) => {
+const SongCard = ({ song, i, activeSong, isPlaying, data }: { song: Song; i: number, activeSong: Song | undefined, isPlaying: boolean, data: Song[] }) => {
   const dispatch = useAppDispatch();
   const handlePauseClick = () => {
     dispatch(playPause(false));
@@ -25,7 +25,7 @@ const SongCard = ({ song, i, activeSong, isPlaying, data }: { song: Song; i: str
               : "hidden"
           }`}
         >
-          <PlayPause song={song} handlePauseClick={handlePauseClick} handlePlayClick={handlePlayClick} isPlaying={isPlaying} activeSong={activeSong} />
+          <PlayPause song={song} handlePauseClick={handlePauseClick} handlePlayClick={handlePlayClick} isPlaying={isPlaying} activeSong={activeSong} index={i} />
         </div>
         <img alt='son_img' src={song.images?.coverart} />
       </div>
