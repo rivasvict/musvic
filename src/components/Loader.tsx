@@ -1,6 +1,6 @@
 import loader from "../assets/loader.svg";
 
-export const Loader = ({ title = "Loading..." }: { title: string }) => {
+export const Loader = ({ title = "Loading..." }: { title?: string }) => {
   return (
     <div className="w-full flex justify-center items-center flex-col">
       <img src={loader} alt="loader" className="w-32 h-32 object-contain" />

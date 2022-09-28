@@ -11,7 +11,7 @@ export const PlayPause = ({
   index
 }: {
   song: Song;
-  handlePauseClick: (event: SyntheticEvent<MouseEvent>) => void;
+  handlePauseClick: () => void;
   handlePlayClick: (song: Song, i: number) => void;
   activeSong?: Song;
   isPlaying: boolean;
