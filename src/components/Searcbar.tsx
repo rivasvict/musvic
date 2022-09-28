@@ -1,10 +1,20 @@
+import { SyntheticEvent, useState } from "react";
 import { FiSearch } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
 export const Searchbar = () => {
+  const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState('');
+  const handleSubmit = (event: SyntheticEvent) => {
+    event.preventDefault();
+    navigate(`/search/${searchTerm}`);
+  };
+
   return (
     <form
       autoComplete="off"
       className="p-2 text-gray-400 focus-within:text-gray-600"
+      onSubmit={handleSubmit}
     >
       <label htmlFor="search-field" className="sr-only">
         Search all songs
@@ -17,8 +27,8 @@ export const Searchbar = () => {
           id="search-field"
           type="search"
           placeholder="Search"
-          value=""
-          onChange={() => {}}
+          value={searchTerm}
+          onChange={(event) => {setSearchTerm(event.currentTarget.value)}}
           className="flex-1 bg-transparent border-none outline-none placeholder-gray-500 text-base text-white p-4"
         />
       </div>
