@@ -407,3 +407,36 @@ export interface Urlparams {
     "{tracktitle}":  string;
     "{trackartist}": string;
 }
+
+export interface TracksHit {
+    track: TrackData;
+}
+
+export interface TrackData {
+    layout:   string;
+    type:     TrackType;
+    key:      string;
+    title:    string;
+    subtitle: string;
+    share:    Share;
+    images:   TrackImages;
+    hub:      Hub;
+    artists:  ArtistElement[];
+    url:      string;
+}
+
+export interface ArtistElement {
+    id:     string;
+    adamid: string;
+}
+
+export enum TrackType {
+    Music = "MUSIC",
+}
+
+export interface TrackImages {
+    background: string;
+    coverart:   string;
+    coverarthq: string;
+    joecolor:   string;
+}
