@@ -4,19 +4,25 @@ import { useAppDispatch } from "../redux/hooks";
 import { Song } from "../redux/types";
 import { PlayPause } from "./PlayPause";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-import { useState } from "react";
 
-const Favorite = () => {
-  const [isFavorite, setFavorite] = useState(false);
-  const onClick = () => {
-    setFavorite((state) => !state);
-  };
+const Favorite = ({
+  isFavorite,
+  onClickFavorite,
+  songKey,
+}: {
+  isFavorite: boolean;
+  onClickFavorite: (songKey: string) => void;
+  songKey: string;
+}) => {
   return (
-    <div className="text-white text-2xl" onClick={onClick}>
+    <div
+      className="text-white text-2xl"
+      onClick={() => onClickFavorite(songKey)}
+    >
       {isFavorite ? <AiFillHeart /> : <AiOutlineHeart />}
     </div>
   );
-}
+};
 
 const SongCard = ({
   song,
@@ -24,12 +30,16 @@ const SongCard = ({
   activeSong,
   isPlaying,
   data,
+  isFavorite,
+  onClickFavorite
 }: {
   song: Song;
   i: number;
   activeSong: Song | undefined;
   isPlaying: boolean;
   data: Song[];
+  isFavorite: boolean;
+  onClickFavorite: (songKey: string) => void;
 }) => {
   const dispatch = useAppDispatch();
   const handlePauseClick = () => {
@@ -79,7 +89,7 @@ const SongCard = ({
             </Link>
           </p>
         </div>
-        <Favorite />
+        <Favorite isFavorite={isFavorite} onClickFavorite={onClickFavorite} songKey={song.key} />
       </div>
     </div>
   );

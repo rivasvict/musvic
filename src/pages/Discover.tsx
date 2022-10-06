@@ -1,14 +1,35 @@
 import { Igenre, genres } from "../assets/constants";
 import SongCard from "../components/SongCard";
 import { Song } from "../redux/types";
-import { useGetSongsByGenreQuery, useGetTopChartsQuery } from "../redux/services/shazamCore";
+import { useGetSongsByGenreQuery } from "../redux/services/shazamCore";
 import { Loader } from "../components/Loader";
 import { Error } from "../components/Error";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { selectGenreListId } from "../redux/features/playerSlice";
+import { addFavorite, removeFavorite } from "../redux/features/favoriteSlice";
+
+const useFavorite = () => {
+  const { favoriteSongs } = useAppSelector((state) => state.favorite);
+  const dispatch = useAppDispatch();
+
+  const toggleFavorite = (songKey: string) => {
+    const isFavorite = favoriteSongs.find((favorite: string) => favorite === songKey);
+    if (!isFavorite) {
+      dispatch(addFavorite(songKey))
+    } else {
+      dispatch(removeFavorite(songKey))
+    }
+  };
+
+  return {
+    favoriteSongs,
+    toggleFavorite
+  }
+}
 
 const Discover = () => {
   const dispatch = useAppDispatch();
+  const { favoriteSongs, toggleFavorite } = useFavorite();
   const { activeSong, isPlaying, genreListId } = useAppSelector((state) => {
     return state.player;
   });
@@ -40,6 +61,7 @@ const Discover = () => {
       </div>
       <div className="flex flex-wrap sm:justify-start justify-center gap-8">
         {data?.map((song: Song, index: number) => {
+          const isFavorite = !!favoriteSongs.find((favoriteSong: string) => favoriteSong === song.key);
           /** TODO: add song.key instead */
           return (
             <SongCard
@@ -49,6 +71,8 @@ const Discover = () => {
               isPlaying={isPlaying}
               activeSong={activeSong}
               data={data}
+              isFavorite={isFavorite}
+              onClickFavorite={toggleFavorite}
             />
           )
         })}

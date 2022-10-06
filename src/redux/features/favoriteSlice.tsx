@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { Song } from "../types";
 
 interface IFavorite {
-  favoriteSongs: Song[];
+  favoriteSongs: string[];
 }
 
 const initialState: IFavorite = {
@@ -14,13 +14,13 @@ const favoriteSlice = createSlice({
   initialState,
   reducers: {
     addFavorite(state, action) {
-      const { song } = action.payload;
-      state.favoriteSongs.push(song);
+      const songKey = action.payload;
+      state.favoriteSongs.push(songKey);
     },
     removeFavorite(state, action) {
-      const { key } = action.payload;
+      const songKey = action.payload;
       state.favoriteSongs = state.favoriteSongs.filter(
-        (song) => song.key !== key
+        (key) => songKey !== key
       );
     },
   },
