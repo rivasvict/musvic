@@ -4,6 +4,7 @@ import {
   HiOutlineUserGroup,
   HiOutlineHashtag,
 } from "react-icons/hi";
+import { AiOutlineHeart } from "react-icons/ai";
 
 export interface Igenre {
   title: string;
@@ -32,4 +33,5 @@ export const links = [
   { name: "Around You", to: "/around-you", icon: HiOutlinePhotograph },
   { name: "Top Artists", to: "/top-artists", icon: HiOutlineUserGroup },
   { name: "Top Charts", to: "/top-charts", icon: HiOutlineHashtag },
+  { name: "My Favorites", to: "/my-favorites", icon: AiOutlineHeart }
 ];

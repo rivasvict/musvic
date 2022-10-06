@@ -6,6 +6,7 @@ import { TopPlay } from "./components/TopPlay";
 import { AroundYou } from "./pages/AroundYou";
 import { ArtistDetails } from "./pages/ArtistDetails";
 import Discover from "./pages/Discover";
+import { FavoritesPage } from "./pages/FavoritesPage";
 import { Search } from "./pages/Search";
 import { SongDetails } from "./pages/SongDetails";
 import { TopArtists } from "./pages/TopArtists";
@@ -29,6 +30,7 @@ function App() {
               <Route path="/around-you" element={<AroundYou />} />
               <Route path="/top-charts" element={<TopCharts />} />
               <Route path="/top-artists" element={<TopArtists />} />
+              <Route path="/my-favorites" element={<FavoritesPage />} />
               <Route path="/search/:searchterm" element={<Search />} />
             </Routes>
           </div>
