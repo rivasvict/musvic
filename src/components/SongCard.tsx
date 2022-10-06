@@ -2,46 +2,8 @@ import { Link } from "react-router-dom";
 import { playPause, setActiveSong } from "../redux/features/playerSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { Song } from "../redux/types";
+import { Favorite } from "./Favorite";
 import { PlayPause } from "./PlayPause";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-import { addFavorite, removeFavorite } from "../redux/features/favoriteSlice";
-
-const useFavorite = () => {
-  const { favoriteSongs } = useAppSelector((state) => state.favorite);
-  const dispatch = useAppDispatch();
-
-  const toggleFavorite = (songKey: string) => {
-    const isFavorite = favoriteSongs.find((favorite: string) => favorite === songKey);
-    if (!isFavorite) {
-      dispatch(addFavorite(songKey))
-    } else {
-      dispatch(removeFavorite(songKey))
-    }
-  };
-
-  return {
-    favoriteSongs,
-    toggleFavorite
-  }
-}
-
-const Favorite = ({
-  songKey,
-}: {
-  songKey: string;
-}) => {
-  const { favoriteSongs, toggleFavorite } = useFavorite();
-  const isFavorite = !!favoriteSongs.find((favoriteSong: string) => favoriteSong === songKey);
-
-  return (
-    <div
-      className="text-white text-2xl"
-      onClick={() => toggleFavorite(songKey)}
-    >
-      {isFavorite ? <AiFillHeart /> : <AiOutlineHeart />}
-    </div>
-  );
-};
 
 const SongCard = ({
   song,
