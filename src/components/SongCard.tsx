@@ -3,8 +3,34 @@ import { playPause, setActiveSong } from "../redux/features/playerSlice";
 import { useAppDispatch } from "../redux/hooks";
 import { Song } from "../redux/types";
 import { PlayPause } from "./PlayPause";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { useState } from "react";
 
-const SongCard = ({ song, i, activeSong, isPlaying, data }: { song: Song; i: number, activeSong: Song | undefined, isPlaying: boolean, data: Song[] }) => {
+const Favorite = () => {
+  const [isFavorite, setFavorite] = useState(false);
+  const onClick = () => {
+    setFavorite((state) => !state);
+  };
+  return (
+    <div className="text-white text-2xl" onClick={onClick}>
+      {isFavorite ? <AiFillHeart /> : <AiOutlineHeart />}
+    </div>
+  );
+}
+
+const SongCard = ({
+  song,
+  i,
+  activeSong,
+  isPlaying,
+  data,
+}: {
+  song: Song;
+  i: number;
+  activeSong: Song | undefined;
+  isPlaying: boolean;
+  data: Song[];
+}) => {
   const dispatch = useAppDispatch();
   const handlePauseClick = () => {
     dispatch(playPause(false));
@@ -25,23 +51,35 @@ const SongCard = ({ song, i, activeSong, isPlaying, data }: { song: Song; i: num
               : "hidden"
           }`}
         >
-          <PlayPause song={song} handlePauseClick={handlePauseClick} handlePlayClick={handlePlayClick} isPlaying={isPlaying} activeSong={activeSong} index={i} />
+          <PlayPause
+            song={song}
+            handlePauseClick={handlePauseClick}
+            handlePlayClick={handlePlayClick}
+            isPlaying={isPlaying}
+            activeSong={activeSong}
+            index={i}
+          />
         </div>
-        <img alt='son_img' src={song.images?.coverart} />
+        <img alt="son_img" src={song.images?.coverart} />
       </div>
-      <div
-        className="mt-4 flex flex-col"
-      >
-        <p className="font-semibold text-lg text-white truncate">
-          <Link to={`/songs/${song?.key}`}>
-            {song.title}
-          </Link>
-        </p>
-        <p className="text-sm truncate text-gray-300 mt-1">
-          <Link to={song.artists ? `/artists/${song?.artists[0]?.adamid}` : `/top-artists` }>
-            {song.subtitle}
-          </Link>
-        </p>
+      <div className="mt-4 flex justify-between">
+        <div className="flex flex-col w-44">
+          <p className="font-semibold text-lg text-white truncate">
+            <Link to={`/songs/${song?.key}`}>{song.title}</Link>
+          </p>
+          <p className="text-sm truncate text-gray-300 mt-1">
+            <Link
+              to={
+                song.artists
+                  ? `/artists/${song?.artists[0]?.adamid}`
+                  : `/top-artists`
+              }
+            >
+              {song.subtitle}
+            </Link>
+          </p>
+        </div>
+        <Favorite />
       </div>
     </div>
   );
