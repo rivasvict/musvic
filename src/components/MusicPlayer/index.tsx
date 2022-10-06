@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { nextSong, prevSong, playPause } from '../../redux/features/playerSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { Favorite } from '../Favorite';
 import Controls from './Controls';
 import Player from './Player';
 import Seekbar from './Seekbar';
@@ -89,6 +90,9 @@ const MusicPlayer = () => {
         />
       </div>
       <VolumeBar value={volume} min="0" max="1" onChange={(event) => setVolume(event.target.value)} setVolume={setVolume} />
+      <div className='ml-4'>
+        <Favorite songKey={(activeSong?.key as string)} />
+      </div>
     </div>
   );
 };

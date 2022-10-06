@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { useGetTopChartsQuery } from "../redux/services/shazamCore";
 import { Song } from "../redux/types";
 import { PlayPause } from "./PlayPause";
+import { Favorite } from "./Favorite";
 
 const TopChartCard = ({
   song,
@@ -43,14 +44,17 @@ const TopChartCard = ({
           </Link>
         </div>
       </div>
-      <PlayPause
-        isPlaying={isPlaying}
-        activeSong={activeSong}
-        song={song}
-        handlePauseClick={handlePauseClick}
-        handlePlayClick={() => handlePlayClick(song, index)}
-        index={index}
-      />
+      <div className="mr-4">
+        <PlayPause
+          isPlaying={isPlaying}
+          activeSong={activeSong}
+          song={song}
+          handlePauseClick={handlePauseClick}
+          handlePlayClick={() => handlePlayClick(song, index)}
+          index={index}
+        />
+      </div>
+      <Favorite songKey={song.key} />
     </div>
   );
 };
