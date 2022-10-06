@@ -21,6 +21,7 @@ const NavLinks = ({
             onClick={(event) => {
               handleClick && handleClick(event);
             }}
+            end={link.to === '/'}
           >
             <link.icon className="w-6 h-6 mr-2" />
             {link.name}
