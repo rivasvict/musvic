@@ -1,23 +1,42 @@
 import { Link } from "react-router-dom";
 import { playPause, setActiveSong } from "../redux/features/playerSlice";
-import { useAppDispatch } from "../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { Song } from "../redux/types";
 import { PlayPause } from "./PlayPause";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { addFavorite, removeFavorite } from "../redux/features/favoriteSlice";
+
+const useFavorite = () => {
+  const { favoriteSongs } = useAppSelector((state) => state.favorite);
+  const dispatch = useAppDispatch();
+
+  const toggleFavorite = (songKey: string) => {
+    const isFavorite = favoriteSongs.find((favorite: string) => favorite === songKey);
+    if (!isFavorite) {
+      dispatch(addFavorite(songKey))
+    } else {
+      dispatch(removeFavorite(songKey))
+    }
+  };
+
+  return {
+    favoriteSongs,
+    toggleFavorite
+  }
+}
 
 const Favorite = ({
-  isFavorite,
-  onClickFavorite,
   songKey,
 }: {
-  isFavorite: boolean;
-  onClickFavorite: (songKey: string) => void;
   songKey: string;
 }) => {
+  const { favoriteSongs, toggleFavorite } = useFavorite();
+  const isFavorite = !!favoriteSongs.find((favoriteSong: string) => favoriteSong === songKey);
+
   return (
     <div
       className="text-white text-2xl"
-      onClick={() => onClickFavorite(songKey)}
+      onClick={() => toggleFavorite(songKey)}
     >
       {isFavorite ? <AiFillHeart /> : <AiOutlineHeart />}
     </div>
@@ -29,17 +48,13 @@ const SongCard = ({
   i,
   activeSong,
   isPlaying,
-  data,
-  isFavorite,
-  onClickFavorite
+  data
 }: {
   song: Song;
   i: number;
   activeSong: Song | undefined;
   isPlaying: boolean;
   data: Song[];
-  isFavorite: boolean;
-  onClickFavorite: (songKey: string) => void;
 }) => {
   const dispatch = useAppDispatch();
   const handlePauseClick = () => {
@@ -89,7 +104,7 @@ const SongCard = ({
             </Link>
           </p>
         </div>
-        <Favorite isFavorite={isFavorite} onClickFavorite={onClickFavorite} songKey={song.key} />
+        <Favorite songKey={song.key} />
       </div>
     </div>
   );
